@@ -1,0 +1,100 @@
+/* Style pour les cartes de tâches */
+.card {
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+.card-body {
+  height: 230px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 14px;
+}
+
+/* Style pour les boutons des actions de tâches */
+.btn-group {
+  margin-top: 10px;
+}
+
+.btn-group button {
+  margin-right: 5px;
+}
+
+/* Style pour l'overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Couleur d'overlay semi-transparente */
+  z-index: 1000; /* Positionne l'overlay au-dessus de tout le contenu */
+}
+
+/* Style pour le conteneur du formulaire */
+.modal-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001; /* Positionne le conteneur du formulaire au-dessus de l'overlay */
+}
+
+/* Style pour le contenu du formulaire */
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  width: 190%;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+.three-dots-vertical {
+  float: left;
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-menu a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Afficher le menu déroulant au-dessus du bouton des trois points */
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-menu.show {
+  top: calc(20% + 6px);
+  left: 21vh;
+}
+.col-md-4 {
+  flex: 0 0 auto;
+  width: 33.33333333%;
+  position: relative;
+}

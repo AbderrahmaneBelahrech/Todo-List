@@ -1,52 +1,32 @@
 import React from "react";
-import 'bootstrap/dist/css/bootstrap.min.css'
-// import cinemaLogo from "./assets/cinema-logo.png";
-import "./App.css";
-import { Link, Route, Routes } from "react-router-dom";
-import ListeFilms from "./Pages/ListeFilms";
-import DetailsFilm from "./Pages/DetailsFilm";
-// import LoginPage from "./Pages/LoginPage";
-import AjouterCinema from "./Pages/AjouterCinema";
-import AjouterFilm from "./Pages/AjouterFilm";
-import Admin from "./Pages/Admin";
-// import BasicTable from "./Pages/test"
-import SignUp from "./components/SignUp"
-// import { Login } from "@mui/icons-material";
-import Login from "./components/Login"
-import ListSignUp from "./components/ListSignUp";
-import bt from './components/bt.1';
+import { Route, Routes } from "react-router-dom";
+import SignUp from "./components/SignUp";
+import Login from "./components/Login";
+import Dashboard from "./components/Dashboard";
+import MyTasks from "./components/MyTasks";
+import Group from "./components/Group";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 function App() {
   return (
-    // <div className="App">
-    <div className="">
-      {/* <header className="header">
-        <img src={cinemaLogo} alt="Logo" className="logo" />
-        <div className="buttons">
-          <Link to="/">Accueil</Link>
-          <Link to="/films">Films</Link>
-          <Link className="button" to="/login">
-            Se connecter
-          </Link>
-        </div>
-      </header> */}
+    <>
+      <ToastContainer />
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
 
-      <Routes>
-        <Route path="/" element={<ListeFilms />} />
-        {/* <Route path="/bt" element={<bt/>} /> */}
-        {/* <Route path="/bt" element={<bt/>} /> */}
-        {/* <Route path="/log" element={<ListeFilms />} /> */}
-        <Route path="/ss" element={<ListSignUp />} />
-        <Route path="/sign-up" element={<SignUp/>} />
-        <Route path="/login" element={<Login/>} />
-        {/* <Route path="/login" element={<LoginPage />} /> */}
-        <Route path="/ajouter-cinema" element={<AjouterCinema />} />
-        <Route path="/ajouter-film" element={<AjouterFilm />} />
-        <Route path="/details/:id" element={<DetailsFilm />} />
-        <Route path="/admin" element={<Admin />} />
-      </Routes>
-    </div>
+          <Route path="/tasks" element={<MyTasks />} />
+          <Route path="/group" element={<Group />} />
+        </Routes>
+      </div>
+    </>
   );
 }
 

@@ -1,20 +1,37 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Logo from "../assets/logo.jpeg";
+
 import {
-  Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox,
-  Link, Grid, Box, Typography, Container, ThemeProvider, createTheme
-} from '@mui/material';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+  Avatar,
+  Button,
+  CssBaseline,
+  TextField,
+  FormControlLabel,
+  Checkbox,
+  Link,
+  Grid,
+  Box,
+  Typography,
+  Container,
+  ThemeProvider,
+  createTheme,
+} from "@mui/material";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 function SignUp() {
   const navigate = useNavigate();
-  const [name, setName] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [phone, setPhone] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [confirmPassword, setConfirmPassword] = React.useState('');
-  const [errors, setErrors] = React.useState({ email: '', phone: '', password: '' });
+  const [name, setName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [phone, setPhone] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [confirmPassword, setConfirmPassword] = React.useState("");
+  const [errors, setErrors] = React.useState({
+    email: "",
+    phone: "",
+    password: "",
+  });
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneRegex = /^\+?(\d.*){3,}$/;
@@ -24,28 +41,37 @@ function SignUp() {
 
   const validate = () => {
     let tempErrors = {};
-    tempErrors.email = emailRegex.test(email) ? '' : 'Email is not valid.';
-    tempErrors.phone = phoneRegex.test(phone) ? '' : 'Phone number is not valid.';
-    tempErrors.password = password === confirmPassword ? (passwordRegex.test(password) ? '' : 'Password must contain at least 8 characters, one uppercase, one lowercase, and one number.') : 'Passwords do not match.';
-    setErrors({...tempErrors});
-    return Object.values(tempErrors).every(x => x === "");
+    tempErrors.email = emailRegex.test(email) ? "" : "Email is not valid.";
+    tempErrors.phone = phoneRegex.test(phone)
+      ? ""
+      : "Phone number is not valid.";
+    tempErrors.password =
+      password === confirmPassword
+        ? passwordRegex.test(password)
+          ? ""
+          : "Password must contain at least 8 characters, one uppercase, one lowercase, and one number."
+        : "Passwords do not match.";
+    setErrors({ ...tempErrors });
+    return Object.values(tempErrors).every((x) => x === "");
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (validate()) {
       const user = { name, email, phone, password };
-      axios.post('http://localhost:8082/api/users/signup', user)
-  .then(response => {
-    // alert('Signup Successful');
-    navigate('/login');
-  })
-  .catch(error => {
-    const errorMessage = error.response ? (error.response.data.message || error.response.data) : 'Unknown Error';
-    alert('Signup Failed: ' + errorMessage);
-    console.error('Signup error:', error.response || error);
-  });
-
+      axios
+        .post("http://localhost:8080/api/users/signup", user)
+        .then((response) => {
+          // alert('Signup Successful');
+          navigate("/login");
+        })
+        .catch((error) => {
+          const errorMessage = error.response
+            ? error.response.data.message || error.response.data
+            : "Unknown Error";
+          alert("Signup Failed: " + errorMessage);
+          console.error("Signup error:", error.response || error);
+        });
     }
   };
 
@@ -56,20 +82,44 @@ function SignUp() {
         <Box
           sx={{
             marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign Up
-          </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField margin="normal" required fullWidth id="name" label="Name" name="name" autoComplete="name" autoFocus value={name} onChange={(e) => setName(e.target.value)} />
-            <TextField margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} error={!!errors.email} helperText={errors.email} />
+          <img src={Logo} style={{ maxWidth: "100px" }} alt="logo" />
+
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 1 }}
+          >
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="name"
+              label="Name"
+              name="name"
+              autoComplete="name"
+              autoFocus
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              error={!!errors.email}
+              helperText={errors.email}
+            />
             <TextField
               margin="normal"
               required
@@ -113,10 +163,6 @@ function SignUp() {
                 validate();
               }}
             />
-            <FormControlLabel
-              control={<Checkbox value="allowExtraEmails" color="primary" />}
-              label="I want to receive inspiration, marketing promotions and updates via email."
-            />
             <Button
               type="submit"
               fullWidth
@@ -140,4 +186,3 @@ function SignUp() {
 }
 
 export default SignUp;
-
