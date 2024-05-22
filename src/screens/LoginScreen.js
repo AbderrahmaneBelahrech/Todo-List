@@ -14,7 +14,7 @@ const LoginScreen = ({ navigation }) => {
       .then(response => {
         if (response.status === 200) {
           Alert.alert("Login Successful", "Welcome, " + response.data.name + "!");
-          navigation.navigate("Home", {name: response.data.name}); // Adjust as necessary
+          navigation.replace("Home", {name: response.data.name, id: response.data.id, email: response.data.email}); // Adjust as necessary
         } else {
           Alert.alert("Login Failed", "Please check your credentials.");
         }

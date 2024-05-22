@@ -56,7 +56,7 @@ const SignUpScreen = ({ navigation }) => {
                 <Text style={styles.subHeader}>
                     Already have an account?
                     {' '}
-                    <Text style={styles.link} onPress={() => navigation.navigate('Login')}>Sign in here</Text>
+                    <Text style={styles.link} onPress={() => navigation.goBack()}>Sign in here</Text>
                 </Text>
 
                 <Text style={styles.orStyle}>Or</Text>
