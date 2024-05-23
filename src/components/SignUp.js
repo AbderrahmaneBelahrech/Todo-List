@@ -4,21 +4,16 @@ import axios from "axios";
 import Logo from "../assets/logo.jpeg";
 
 import {
-  Avatar,
   Button,
   CssBaseline,
   TextField,
-  FormControlLabel,
-  Checkbox,
   Link,
   Grid,
   Box,
-  Typography,
   Container,
   ThemeProvider,
   createTheme,
 } from "@mui/material";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 function SignUp() {
   const navigate = useNavigate();

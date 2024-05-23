@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Sidebar from "./Sidebar";
@@ -64,36 +63,12 @@ const Group = () => {
       toast.error("An error occurred while adding the group.");
     }
   };
-=======
-import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
-import Sidebar from "./Sidebar";
-import "./MyTasks.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faSpinner, faCheck } from "@fortawesome/free-solid-svg-icons";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-const Group = () => {
-  const userId = localStorage.getItem("userId");
-  const [tasks, setTasks] = useState([]);
-  const [newTask, setNewTask] = useState("");
-  const [description, setDescription] = useState("");
-  const [dueDate, setDueDate] = useState("");
-  const [error, setError] = useState(null);
-  const [showForm, setShowForm] = useState(false);
-  const [taskId, setTaskId] = useState(null);
-  const [showMenu, setShowMenu] = useState(false);
-  const [selectedTaskId, setSelectedTaskId] = useState(null);
-  const menuRef = useRef(null);
->>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
 
   return (
     <div className="app-container">
       <Sidebar />
       <ToastContainer position="top-center" reverseOrder={false} />
       <div className="container py-5" style={{ marginLeft: "23%" }}>
-<<<<<<< HEAD
         <h4 className="text-center mb-4">Groups</h4>
         <button
           className="btn btn-primary mb-4"
@@ -103,37 +78,20 @@ const Group = () => {
           New Group
         </button>
 
-=======
-        <h4 className="text-center mb-4">Group Tasks</h4>
-        <button
-          className="btn btn-primary mb-4"
-          onClick={() => setShowForm(true)}
-        >
-          +
-        </button>
->>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
         {showForm && (
           <div className="overlay" onClick={() => setShowForm(false)}>
             <div className="modal" style={{ display: "block" }}>
               <div className="modal-dialog">
                 <div className="modal-content">
                   <div className="modal-header">
-<<<<<<< HEAD
                     <h5 className="modal-title">New Group</h5>
                   </div>
                   <form
                     onSubmit={handleAddGroup}
-=======
-                    <h5 className="modal-title"></h5>
-                  </div>
-                  <form
-                    // onSubmit={handleAddTask}
->>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
                     onClick={(e) => e.stopPropagation()}
                   >
                     <div className="modal-body">
                       <div className="form-group">
-<<<<<<< HEAD
                         <label htmlFor="groupName">Group Name</label>
                         <input
                           type="text"
@@ -160,26 +118,12 @@ const Group = () => {
                             setGroupMembersEmails(e.target.value)
                           }
                           required
-=======
-                        <label htmlFor="taskName">Task Code:</label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="taskName"
-                          value={newTask}
-                          onChange={(e) => setNewTask(e.target.value)}
-                          onClick={(e) => e.stopPropagation()}
->>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
                         />
                       </div>
                     </div>
                     <div className="modal-footer">
                       <button type="submit" className="btn btn-primary">
-<<<<<<< HEAD
                         Add Group
-=======
-                        Add Task
->>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
                       </button>
                       <button
                         type="button"
@@ -195,7 +139,6 @@ const Group = () => {
             </div>
           </div>
         )}
-<<<<<<< HEAD
 
         <div className="row">
           {groups.length > 0 ? (
@@ -245,52 +188,6 @@ const Group = () => {
           ) : (
             <p>No groups available.</p>
           )}
-=======
-        {error && <div className="alert alert-danger">{error}</div>}
-        <div className="row">
-          <div
-            className="col-md-4"
-            // onDragOver={(e) => handleDragOver(e)}
-            // onDrop={(e) => handleDrop(e, "TO_DO")}
-          >
-            <h5>ToDo</h5>
-            {tasks
-              .filter((task) => task.status === "TO_DO")
-              .map((task) => (
-                <div
-                  key={task.id}
-                  className="card mb-3"
-                  draggable
-                  // onDragStart={(e) => handleDragStart(e, task.id)}
-                ></div>
-              ))}
-          </div>
-          <div
-            className="col-md-4"
-            // onDragOver={(e) => handleDragOver(e)}
-            // onDrop={(e) => handleDrop(e, "IN_PROGRESS")}
-          >
-            <h5>Doing</h5>
-            {tasks
-              .filter((task) => task.status === "IN_PROGRESS")
-              .map((task) => (
-                <div
-                  key={task.id}
-                  className="card mb-3"
-                  draggable
-                  // onDragStart={(e) => handleDragStart(e, task.id)}onDragOver={(e) => handleDragOver(e)}onDrop={(e) => handleDrop(e, "DONE")}onDragStart={(e) => handleDragStart(e, task.id)}
-                ></div>
-              ))}
-          </div>
-          <div className="col-md-4">
-            <h5>Done</h5>
-            {tasks
-              .filter((task) => task.status === "DONE")
-              .map((task) => (
-                <div key={task.id} className="card mb-3" draggable></div>
-              ))}
-          </div>
->>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
         </div>
       </div>
     </div>

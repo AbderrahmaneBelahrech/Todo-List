@@ -13,7 +13,6 @@ const Dashboard = () => {
 
   const fetchTasksUser = async () => {
     try {
-<<<<<<< HEAD
       const userTasksResponse = await axios.get(
         `http://localhost:8080/api/tasks/user/${userId}`
       );
@@ -55,26 +54,12 @@ const Dashboard = () => {
         "Nombre de tâches des groupes auxquels l'utilisateur appartient:",
         groupTasksCount
       );
-=======
-      const response = await axios.get(
-        `http://localhost:8080/api/tasks/user/${userId}`
-      );
-      const userTasks = response.data.filter(
-        (task) => task.owner.id === parseInt(userId)
-      );
-      setTasks(response.data);
-      setTasks(userTasks);
->>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
     } catch (error) {
       console.error("Error fetching tasks:", error);
     }
   };
-<<<<<<< HEAD
 
   const countTasksByStatus = (status) => {
-=======
-  const filterTasksByStatus = (status) => {
->>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
     return tasks.filter((task) => task.status === status).length;
   };
 
@@ -99,11 +84,7 @@ const Dashboard = () => {
                 <div className="card-body">
                   <h5 className="card-title">To Do</h5>
                   <p className="card-textt">
-<<<<<<< HEAD
                     Nombre de tâches : {countTasksByStatus("TO_DO")}
-=======
-                    Nombre de tâches : {filterTasksByStatus("TO_DO")}
->>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
                   </p>
                 </div>
               </div>
@@ -113,11 +94,7 @@ const Dashboard = () => {
                 <div className="card-body">
                   <h5 className="card-title">In Progress</h5>
                   <p className="card-textt">
-<<<<<<< HEAD
                     Nombre de tâches : {countTasksByStatus("IN_PROGRESS")}
-=======
-                    Nombre de tâches : {filterTasksByStatus("IN_PROGRESS")}
->>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
                   </p>
                 </div>
               </div>
@@ -127,11 +104,7 @@ const Dashboard = () => {
                 <div className="card-body">
                   <h5 className="card-title">Done</h5>
                   <p className="card-textt">
-<<<<<<< HEAD
                     Nombre de tâches : {countTasksByStatus("DONE")}
-=======
-                    Nombre de tâches : {filterTasksByStatus("DONE")}
->>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
                   </p>
                 </div>
               </div>

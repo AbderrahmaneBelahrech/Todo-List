@@ -7,12 +7,10 @@ import {
   CssBaseline,
   TextField,
   Box,
-  Typography,
   Container,
   ThemeProvider,
   createTheme,
 } from "@mui/material";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 function Login() {
   const navigate = useNavigate();
