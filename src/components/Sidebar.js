@@ -8,10 +8,16 @@ import {
   CDBSidebarMenuItem,
 } from "cdbreact";
 import { NavLink } from "react-router-dom";
+<<<<<<< HEAD
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Sidebar = () => {
+=======
+
+const Sidebar = () => {
+  // Récupérer le nom d'utilisateur stocké dans le stockage local
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
   const username = localStorage.getItem("username");
 
   return (
@@ -45,14 +51,29 @@ const Sidebar = () => {
             <NavLink exact to="/group" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="user">Group</CDBSidebarMenuItem>
             </NavLink>
+<<<<<<< HEAD
+=======
+            <NavLink exact to="/login" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="user">Logout</CDBSidebarMenuItem>
+            </NavLink>
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
           </CDBSidebarMenu>
         </CDBSidebarContent>
 
         <CDBSidebarFooter style={{ textAlign: "center" }}>
+<<<<<<< HEAD
           <div style={{ padding: "20px 5px" }}>
             <NavLink exact to="/login" activeClassName="activeClicked">
               <FontAwesomeIcon icon={faSignOutAlt} /> Logout
             </NavLink>
+=======
+          <div
+            style={{
+              padding: "20px 5px",
+            }}
+          >
+            {username && `Welcome : ${username}`}
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
           </div>
         </CDBSidebarFooter>
       </CDBSidebar>

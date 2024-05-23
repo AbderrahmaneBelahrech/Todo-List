@@ -9,8 +9,11 @@ import "react-toastify/dist/ReactToastify.css";
 
 const MyTasks = () => {
   const userId = localStorage.getItem("userId");
+<<<<<<< HEAD
   const [userBelongsToGroup, setUserBelongsToGroup] = useState(false);
   const [priority, setPriority] = useState("LOW");
+=======
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
   const [description, setDescription] = useState("");
@@ -21,6 +24,7 @@ const MyTasks = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedTaskId, setSelectedTaskId] = useState(null);
   const menuRef = useRef(null);
+<<<<<<< HEAD
   const [Form, setForm] = useState(false);
   const [status, setStatus] = useState("");
   const [groupName, setGroupName] = useState("");
@@ -81,6 +85,22 @@ const MyTasks = () => {
 
       const allTasks = [...userTasks, ...groupTasks];
       setTasks(allTasks);
+=======
+
+  useEffect(() => {
+    fetchTasks();
+  }, []);
+
+  const fetchTasks = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/api/tasks/user/${userId}`
+      );
+      const userTasks = response.data.filter(
+        (task) => task.owner.id === parseInt(userId)
+      );
+      setTasks(userTasks);
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
     } catch (error) {
       console.error("Error fetching tasks:", error);
     }
@@ -88,18 +108,40 @@ const MyTasks = () => {
 
   const handleShowMenu = (taskId) => {
     if (selectedTaskId === taskId) {
+<<<<<<< HEAD
       setShowMenu(!showMenu);
     } else {
       setSelectedTaskId(taskId);
       setShowMenu(true);
     }
   };
+=======
+      setShowMenu(!showMenu); // Inverser l'état du menu
+    } else {
+      setSelectedTaskId(taskId); // Mettre à jour l'ID de la tâche sélectionnée
+      setShowMenu(true); // Afficher le menu
+    }
+  };
+
+  const generateRandomCode = () => {
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    const length = 8; // Longueur du code
+    let code = "";
+    for (let i = 0; i < length; i++) {
+      code += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return code;
+  };
+
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
   const handleUpdate = async (taskId) => {
     try {
       const response = await axios.get(
         `http://localhost:8080/api/tasks/${taskId}`
       );
       const taskToUpdate = response.data;
+<<<<<<< HEAD
 
       if (taskToUpdate.owner.id === parseInt(userId)) {
         setNewTask(taskToUpdate.name);
@@ -112,12 +154,21 @@ const MyTasks = () => {
       } else {
         toast.error("You are not authorized to update this task.");
       }
+=======
+      // Mettre à jour le formulaire avec les informations de la tâche sélectionnée
+      setNewTask(taskToUpdate.name);
+      setDescription(taskToUpdate.description);
+      setDueDate(taskToUpdate.dueDate);
+      setTaskId(taskId);
+      setShowForm(true); // Afficher le formulaire de création de tâche avec les informations pré-remplies
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
     } catch (error) {
       console.error("Error fetching task details:", error);
       toast.error("Failed to fetch task details. Please try again.");
     }
   };
 
+<<<<<<< HEAD
   const handleUpdateTask = async (e) => {
     e.preventDefault();
     if (!newTask.trim()) {
@@ -154,22 +205,56 @@ const MyTasks = () => {
     }
   };
 
+=======
+  const handleShare = () => {
+    const randomCode = generateRandomCode();
+    console.log("Random code:", randomCode);
+    console.log("button clicked ");
+    // Affichez le code généré ou envoyez-le à votre ami ici
+    // Vous pouvez également implémenter une logique pour envoyer le code au backend
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
   const handleAddTask = async (e) => {
     e.preventDefault();
     if (!newTask.trim()) {
       toast.error("Please enter a task name.");
       return;
     }
+<<<<<<< HEAD
     if (description.length >= 300) {
       toast.error("Description must be less than 300 characters.");
       return;
     }
     try {
       const taskData = {
+=======
+    if (description.length >= 150) {
+      toast.error("Description must be less than 300 characters .");
+      return;
+    }
+    try {
+      const response = await axios.post(`http://localhost:8080/api/tasks`, {
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
         name: newTask.trim(),
         description,
         dueDate,
         status: "TO_DO",
+<<<<<<< HEAD
         priority: priority,
         owner: {
           id: userId,
@@ -189,6 +274,12 @@ const MyTasks = () => {
         `http://localhost:8080/api/tasks`,
         taskData
       );
+=======
+        owner: {
+          id: userId,
+        },
+      });
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
       const addedTask = response.data;
       setTasks([...tasks, addedTask]);
       setNewTask("");
@@ -197,8 +288,11 @@ const MyTasks = () => {
       setShowForm(false);
       setError(null);
       toast.success("New Task Added successfully");
+<<<<<<< HEAD
       fetchTasks();
       fetchGroups();
+=======
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
     } catch (error) {
       toast.error("Failed to add the task. Please try again later.");
     }
@@ -206,6 +300,7 @@ const MyTasks = () => {
 
   const handleDeleteTask = async (taskId) => {
     try {
+<<<<<<< HEAD
       const isAdmin = groups.find(
         (group) =>
           group.id === tasks.find((task) => task.id === taskId)?.userGroup?.id
@@ -223,6 +318,15 @@ const MyTasks = () => {
     } catch (error) {
       console.error("Error deleting task:", error);
       toast.error("Failed to delete the task. Please try again later.");
+=======
+      await axios.delete(`http://localhost:8080/api/tasks/delete/${taskId}`);
+      const updatedTasks = tasks.filter((task) => task.id !== taskId);
+      setTasks(updatedTasks);
+      toast.info("Task Deleted ");
+    } catch (error) {
+      console.error("Error deleting task:", error);
+      toast.error("Failed to delete task. Please try again.");
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
     }
   };
 
@@ -240,11 +344,16 @@ const MyTasks = () => {
         toast.info("Task moved to IN_PROGRESS");
       } else if (newStatus === "DONE") {
         toast.success("Task moved to DONE");
+<<<<<<< HEAD
       } else {
         toast.info("Task moved to TO_DO");
       }
       fetchTasks();
       fetchGroups();
+=======
+      }
+      window.location.reload();
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
     } catch (error) {
       console.error("Error updating task status:", error);
       toast.error("Failed to update task status. Please try again.");
@@ -276,6 +385,7 @@ const MyTasks = () => {
         >
           New Task
         </button>
+<<<<<<< HEAD
 
         {Form && (
           <div className="overlay" onClick={() => setForm(false)}>
@@ -342,6 +452,8 @@ const MyTasks = () => {
             </div>
           </div>
         )}
+=======
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
         {showForm && (
           <div className="overlay" onClick={() => setShowForm(false)}>
             <div className="modal" style={{ display: "block" }}>
@@ -388,6 +500,7 @@ const MyTasks = () => {
                           onClick={(e) => e.stopPropagation()}
                         />
                       </div>
+<<<<<<< HEAD
                       <div className="form-group">
                         <label htmlFor="priority">Priority:</label>
                         <select
@@ -421,6 +534,8 @@ const MyTasks = () => {
                           </select>
                         )}
                       </div>
+=======
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
                     </div>
                     <div className="modal-footer">
                       <button type="submit" className="btn btn-primary">
@@ -449,10 +564,13 @@ const MyTasks = () => {
           >
             <h5>ToDo</h5>
             {tasks
+<<<<<<< HEAD
               .filter(
                 (task, index, self) =>
                   index === self.findIndex((t) => t.id === task.id)
               )
+=======
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
               .filter((task) => task.status === "TO_DO")
               .map((task) => (
                 <div
@@ -460,6 +578,7 @@ const MyTasks = () => {
                   className="card mb-3"
                   draggable
                   onDragStart={(e) => handleDragStart(e, task.id)}
+<<<<<<< HEAD
                   style={{
                     backgroundColor: task.userGroup ? "bisque" : "white",
                     borderLeftWidth: "7px",
@@ -474,6 +593,8 @@ const MyTasks = () => {
                       }
                     })(),
                   }}
+=======
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
                 >
                   <div className="card-body">
                     <div className="d-flex justify-content-end">
@@ -507,6 +628,7 @@ const MyTasks = () => {
                       >
                         Update
                       </button>
+<<<<<<< HEAD
                     </div>
                     <p className="card-text">
                       <span style={{ fontWeight: "bold" }}>
@@ -520,6 +642,12 @@ const MyTasks = () => {
                         ""
                       )}
                     </p>
+=======
+                      <button className="dropdown-item" onClick={handleShare}>
+                        Share
+                      </button>
+                    </div>
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
                     <div className="btn-group">
                       <button
                         className="btn btn-danger"
@@ -541,6 +669,7 @@ const MyTasks = () => {
                       </button>
                     </div>
                   </div>
+<<<<<<< HEAD
                   <div>
                     <span
                       style={{
@@ -562,6 +691,8 @@ const MyTasks = () => {
                     </span>
                     <span style={{ float: "right" }}>{task.dueDate}</span>
                   </div>
+=======
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
                 </div>
               ))}
           </div>
@@ -572,11 +703,14 @@ const MyTasks = () => {
           >
             <h5>Doing</h5>
             {tasks
+<<<<<<< HEAD
 
               .filter(
                 (task, index, self) =>
                   index === self.findIndex((t) => t.id === task.id)
               )
+=======
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
               .filter((task) => task.status === "IN_PROGRESS")
               .map((task) => (
                 <div
@@ -584,6 +718,7 @@ const MyTasks = () => {
                   className="card mb-3"
                   draggable
                   onDragStart={(e) => handleDragStart(e, task.id)}
+<<<<<<< HEAD
                   style={{
                     backgroundColor: task.userGroup ? "bisque" : "white",
                     borderLeftWidth: "7px",
@@ -598,6 +733,8 @@ const MyTasks = () => {
                       }
                     })(),
                   }}
+=======
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
                 >
                   <div className="card-body">
                     <div className="d-flex justify-content-end">
@@ -631,6 +768,7 @@ const MyTasks = () => {
                       >
                         Update
                       </button>
+<<<<<<< HEAD
                     </div>
                     <p className="card-text">
                       <span style={{ fontWeight: "bold" }}>
@@ -644,6 +782,12 @@ const MyTasks = () => {
                         ""
                       )}
                     </p>
+=======
+                      <button className="dropdown-item" onClick={handleShare}>
+                        Share
+                      </button>
+                    </div>
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
                     <div className="btn-group">
                       <button
                         className="btn btn-secondary"
@@ -659,6 +803,7 @@ const MyTasks = () => {
                       </button>
                     </div>
                   </div>
+<<<<<<< HEAD
                   <div>
                     <span
                       style={{
@@ -680,6 +825,8 @@ const MyTasks = () => {
                     </span>
                     <span style={{ float: "right" }}>{task.dueDate}</span>
                   </div>
+=======
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
                 </div>
               ))}
           </div>
@@ -690,11 +837,14 @@ const MyTasks = () => {
           >
             <h5>Done</h5>
             {tasks
+<<<<<<< HEAD
 
               .filter(
                 (task, index, self) =>
                   index === self.findIndex((t) => t.id === task.id)
               )
+=======
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
               .filter((task) => task.status === "DONE")
               .map((task) => (
                 <div
@@ -702,6 +852,7 @@ const MyTasks = () => {
                   className="card mb-3"
                   draggable
                   onDragStart={(e) => handleDragStart(e, task.id)}
+<<<<<<< HEAD
                   style={{
                     backgroundColor: task.userGroup ? "bisque" : "white",
                     borderLeftWidth: "7px",
@@ -716,6 +867,8 @@ const MyTasks = () => {
                       }
                     })(),
                   }}
+=======
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
                 >
                   <div className="card-body">
                     <div className="d-flex justify-content-end">
@@ -742,6 +895,7 @@ const MyTasks = () => {
                         selectedTaskId === task.id && showMenu ? "show" : ""
                       }`}
                       ref={menuRef}
+<<<<<<< HEAD
                     ></div>
                     <p className="card-text">
                       <span style={{ fontWeight: "bold" }}>
@@ -755,6 +909,13 @@ const MyTasks = () => {
                         ""
                       )}
                     </p>
+=======
+                    >
+                      <button className="dropdown-item" onClick={handleShare}>
+                        Share
+                      </button>
+                    </div>
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
                     <div className="btn-group">
                       <button
                         className="btn btn-danger"
@@ -764,6 +925,7 @@ const MyTasks = () => {
                       </button>
                     </div>
                   </div>
+<<<<<<< HEAD
                   <div>
                     <span
                       style={{
@@ -785,6 +947,8 @@ const MyTasks = () => {
                     </span>
                     <span style={{ float: "right" }}>{task.dueDate}</span>
                   </div>
+=======
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
                 </div>
               ))}
           </div>

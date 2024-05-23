@@ -1,0 +1,143 @@
+/* Home.css */
+
+/* Style pour le corps de la page */
+body {
+  font-family: "IBM Plex Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Style pour le conteneur principal */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Style pour l'en-tête */
+.site-header {
+  background-color: #f8f9fa;
+  padding: 20px 0;
+  width: 100%;
+}
+
+.site-header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-brand {
+  font-size: 24px;
+}
+
+/* Style pour le logo */
+.header-logo-image {
+  max-width: 100px;
+}
+
+/* Style pour la section hero */
+.hero {
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero-paragraph {
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+.hero-cta .button {
+  margin-right: 20px;
+}
+
+/* Style pour la section features */
+.features {
+  padding: 100px 0;
+  text-align: center;
+}
+
+.feature {
+  margin-bottom: 60px;
+}
+
+.feature-icon img {
+  max-width: 60px;
+}
+
+.feature-title {
+  font-size: 24px;
+  margin-top: 24px;
+}
+
+/* Style pour la section pricing */
+.pricing {
+  background-color: #f8f9fa;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.pricing-title {
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.pricing-table {
+  background-color: #ffffff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  border-radius: 8px;
+  margin-bottom: 40px;
+}
+
+.pricing-table-price {
+  font-size: 36px;
+}
+
+.pricing-table-features-title {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.pricing-table-features {
+  list-style: none;
+  padding: 0;
+}
+
+.pricing-table-features li {
+  margin-bottom: 10px;
+}
+
+/* Style pour la section cta */
+.cta {
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.button-primary {
+  background-color: #ffffff;
+  color: #007bff;
+  padding: 15px 40px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.button-primary:hover {
+  background-color: #e9ecef;
+}

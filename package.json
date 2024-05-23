@@ -8,10 +8,15 @@
     "@emotion/react": "^11.11.4",
     "@emotion/style": "^0.8.0",
     "@emotion/styled": "^11.11.5",
+<<<<<<< HEAD
     "@fortawesome/fontawesome-free": "^6.5.2",
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.1",
+=======
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+>>>>>>> ece4238d7e7f499fe0fac257cee4b860eb2e7f15
     "@headlessui/react": "^1.7.19",
     "@mui/icons-material": "^5.15.15",
     "@mui/material": "^5.15.15",
